@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter , Route, Routes } from 'react-router-dom'
 import Home from './paginas/home/Home'
 import Login from './paginas/login/Login'
 import Cadastro from './paginas/cadastro/Cadastro'
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <div style={{ minHeight: '100vh' }}>
 <Routes>
@@ -23,7 +23,7 @@ function App() {
 </div>
 
       <Footer />
-      </Router>
+      </BrowserRouter>
     </>
   )
 }
