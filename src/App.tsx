@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import { BrowserRouter , Route, Routes } from 'react-router-dom'
-import Home from './paginas/home/Home'
-import Login from './paginas/login/Login'
-import Cadastro from './paginas/cadastro/Cadastro'
-import Navbar from './components/statics/navbar/Navbar'
-import Footer from './components/statics/footer/Footer'
-import './App.css'
-import ListaTema from './components/temas/listatema/ListaTema'
-import ListaPostagem from './components/postagens/listapostagem/ListaPostagem'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/statics/navbar/Navbar';
+import Footer from './components/statics/footer/Footer';
+import CadastroUsuario from './paginas/cadastro/Cadastro';
+import Home from './paginas/home/Home';
+import Login from './paginas/login/Login';
+import './App.css';
+import ListaTema from './components/temas/listatema/ListaTema';
+import ListaPostagem from './components/postagens/listapostagem/ListaPostagem';
+import CadastroPost from './components/postagens/cadastroPost/CadastroPost';
+import CadastroTema from './components/temas/cadastroTema/CadastroTema';
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem';
+import DeletarTema from './components/temas/deletarTema/DeletarTema';
+
 
 function App() {
-
   return (
-    <>
-    <BrowserRouter>
+    <Router>
       <Navbar />
       <div style={{ minHeight: '100vh' }}>
-<Routes>
-<Route path="/" element={<Login />} />
-<Route path="/login" element={<Login />} />
-<Route path="/home" element={<Home />} />
-<Route path="/cadastro" element={<Cadastro />} />
-<Route path="/temas" element={<ListaTema />} />
-<Route path="posts" element={<ListaPostagem/>} />
-</Routes>
-</div>
+        <Routes>
 
+          <Route path="/" element={<Login />} />
+
+
+
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/cadastro" element={<CadastroUsuario />} />
+
+          <Route path="/temas" element={<ListaTema />} />
+
+          <Route path="/posts" element={<ListaPostagem />} />
+
+          <Route path="/formularioPostagem" element={<CadastroPost />} />
+
+          <Route path="/formularioPostagem/:id" element={<CadastroPost />} />
+
+          <Route path="/formularioTema" element={<CadastroTema />} />
+
+          <Route path="/formularioTema/:id" element={<CadastroTema />} />
+
+          <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
+
+          <Route path="/deletarTema/:id" element={<DeletarTema />} />
+
+
+        </Routes>
+      </div>
       <Footer />
-      </BrowserRouter>
-    </>
-  )
+
+    </Router>
+  );
 }
 
-export default App
+export default App;
