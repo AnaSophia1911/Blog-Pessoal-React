@@ -3,14 +3,16 @@ import Box from '@mui/material/Box';
 import { Grid, Typography, Button } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import useLocalStorage from 'react-use-localstorage';
 import { login } from '../../service/Service';
 import UserLogin from '../../models/UserLogin';
 import './Login.css'
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../store/tokens/actions';
 
 export default function Login() {
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+    const [token, setToken] = useState('');
     const [userLogin, setUserLogin] = useState<UserLogin>({
         id: 0,
         nome: "",
@@ -30,6 +32,7 @@ export default function Login() {
 
     useEffect(()=>{
         if(token != ''){
+            dispatch(addToken(token))
             navigate('/home')
         }
     }, [token])
