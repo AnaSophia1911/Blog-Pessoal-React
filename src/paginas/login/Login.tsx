@@ -8,6 +8,7 @@ import UserLogin from '../../models/UserLogin';
 import './Login.css'
 import { useDispatch } from 'react-redux';
 import { addToken } from '../../store/tokens/actions';
+import { toast } from 'react-toastify';
 
 export default function Login() {
     let navigate = useNavigate();
@@ -42,10 +43,30 @@ export default function Login() {
         try {
             await login(`/usuarios/logar`, userLogin, setToken)
 
-            alert('usuario logado')
+            toast.success('Usuário logado', {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: 'colored',
+                progress: undefined,
+    
+            });
         }
         catch(error) {
-            alert('usuario invalido')
+            toast.error('Usuário inválido', {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: 'colored',
+                progress: undefined,
+    
+            });
         }
 
     }
