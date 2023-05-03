@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Postagem from '../../../models/Postagem';
 import { busca } from '../../../service/Service'
-import {Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
+import {  Card, CardActions, CardContent, Button, Typography } from '@material-ui/core';
 import {Box} from '@mui/material';
 import './ListaPostagem.css';
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokenReducer';
 import { toast } from 'react-toastify';
@@ -20,15 +19,15 @@ function ListaPostagem() {
   useEffect(() => {
     if (token == "") {
       toast.error('Você precisa estar logado', {
-        position: 'top-right',
+        position: "top-right",
         autoClose: 2000,
-        hideProgressBar: true,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
         draggable: false,
-        theme: 'colored',
+        theme: "colored",
         progress: undefined,
-    })
+    });
       navigate("/login")
 
     }

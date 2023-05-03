@@ -1,21 +1,20 @@
-
 import React, {useState, useEffect, ChangeEvent} from 'react'
 import { Container, Typography, TextField, Button } from "@material-ui/core"
+import {useNavigate, useParams } from 'react-router-dom'
+import './CadastroTema.css';
 import Tema from '../../../models/Tema';
-import './CadastroTema.css'
-import { useNavigate, useParams } from 'react-router-dom';
 import { buscaId, post, put } from '../../../service/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokenReducer';
 import { toast } from 'react-toastify';
 
+
 function CadastroTema() {
     let navigate = useNavigate();
-    const {id} = useParams<{id: string}>();
+    const { id } = useParams<{id: string}>();
     const token = useSelector<TokenState, TokenState["tokens"]>(
         (state) => state.tokens
       );
-
     const [tema, setTema] = useState<Tema>({
         id: 0,
         descricao: ''
@@ -24,21 +23,21 @@ function CadastroTema() {
     useEffect(() => {
         if (token == "") {
             toast.error('Você precisa estar logado', {
-                position: 'top-right',
+                position: "top-right",
                 autoClose: 2000,
-                hideProgressBar: true,
+                hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: 'colored',
+                theme: "colored",
                 progress: undefined,
+                });
+            navigate("/login")
     
-            })
-          navigate('/login')
         }
-      }, [token])
+    }, [token])
 
-      useEffect(() =>{
+    useEffect(() =>{
         if(id !== undefined){
             findById(id)
         }
@@ -51,7 +50,7 @@ function CadastroTema() {
             }
           })
         }
-        
+
         function updatedTema(e: ChangeEvent<HTMLInputElement>) {
 
             setTema({
@@ -60,7 +59,7 @@ function CadastroTema() {
             })
     
         }
-
+        
         async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
             e.preventDefault()
             console.log("tema " + JSON.stringify(tema))
@@ -73,16 +72,15 @@ function CadastroTema() {
                     }
                 })
                 toast.success('Tema atualizado com sucesso', {
-                    position: 'top-right',
+                    position: "top-right",
                     autoClose: 2000,
-                    hideProgressBar: true,
+                    hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: 'colored',
+                    theme: "colored",
                     progress: undefined,
-        
-                });
+                    });
             } else {
                 post(`/tema`, tema, setTema, {
                     headers: {
@@ -90,16 +88,15 @@ function CadastroTema() {
                     }
                 })
                 toast.success('Tema cadastrado com sucesso', {
-                    position: 'top-right',
+                    position: "top-right",
                     autoClose: 2000,
-                    hideProgressBar: true,
+                    hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: 'colored',
+                    theme: "colored",
                     progress: undefined,
-        
-                });
+                    });
             }
             back()
     
@@ -108,7 +105,7 @@ function CadastroTema() {
         function back() {
             navigate('/temas')
         }
-
+  
     return (
         <Container maxWidth="sm" className="topo">
             <form onSubmit={onSubmit}>
